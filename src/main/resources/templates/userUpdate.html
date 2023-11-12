@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Update user</title>
 </head>
 <body>
-
+<div th:align="center">
+    <form action="#" th:action="@{/userUpdate}" th:object="${user}" method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name">
+        <label for="name">Surname</label>
+        <input type="text" th:field="*{surname}" id="surname">
+        <br>
+        <label for="name">Age</label>
+        <input type="text" th:field="*{age}" id="age">
+        <label for="name">Email</label>
+        <input type="text" th:field="*{email}" id="email">
+        <input type="hidden" th:field="*{id}" id="id">
+        <br>
+        <input type="submit" value="Update user"/>
+    </form>
+</div>
 </body>
 </html>
