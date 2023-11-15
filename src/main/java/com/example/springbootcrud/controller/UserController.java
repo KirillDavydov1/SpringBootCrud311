@@ -1,24 +1,19 @@
 package com.example.springbootcrud.controller;
 
 import com.example.springbootcrud.model.User;
-import com.example.springbootcrud.service.UserService;
+import com.example.springbootcrud.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
@@ -40,10 +35,10 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteById(id);
-        return "userList";
+        return "redirect:/users";
     }
 
     @GetMapping("/edit")
@@ -52,7 +47,7 @@ public class UserController {
         return "userUpdate";
     }
 
-    @PostMapping("/userUpdate")
+    @PutMapping("/userUpdate")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/users";
